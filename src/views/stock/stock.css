@@ -1,0 +1,40 @@
+/* List */
+.title-text{
+font-family:'Rubik', sans-serif;
+font-size: 28px;
+font-weight: 700;
+font-style: bold;
+}
+
+.title-text::first-letter{
+  text-transform: uppercase;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.left-text{
+  text-align: right;
+}
+
+.name{
+  color: #006A7A;
+  text-decoration: none;
+}
+.name:hover{
+  color: #006A7A;
+  text-decoration: none;
+}
+
+/* Details */
+.btn-update{
+  text-decoration: #006A7A;
+  color: #006A7A;
+}
+
+@media only screen and (max-width: 600px) {
+  .btn-update {
+    display: none;
+  }
+}
