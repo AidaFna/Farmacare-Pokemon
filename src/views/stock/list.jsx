@@ -16,7 +16,7 @@ const List = () => {
   }, [dispatch, Pokemon]);
 
   const goToDetails = (name) => {
-    navigate(`/details/${name}`);
+    navigate(`/${name}/details`);
   };
 
   return (
@@ -38,7 +38,7 @@ const List = () => {
             <thead>
               <tr>
                 <th>Nama</th>
-                <th className="left-text">Stok</th>
+                <th className="right-text">Stok</th>
               </tr>
             </thead>
             <tbody>
@@ -51,11 +51,11 @@ const List = () => {
                   >
                     {el.name}
                   </td>
-                  <td className="left-text">10 pcs</td>
+                  <td className="right-text">10 pcs</td>
                 </tr>
               ))}
               <tr>
-                <td className="left-text">Table cell</td>
+                <td className="right-text">Table cell</td>
               </tr>
             </tbody>
           </Table>
