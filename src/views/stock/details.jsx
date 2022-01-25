@@ -1,13 +1,14 @@
 import React from "react";
-import { Container, Table, Button, Row, Col } from "react-bootstrap";
+import { Container, Table, Button, Row, Col, Navbar } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./stock.css";
 import allStore from "../../store/actions";
 import FormUpdate from "./form_update";
 
 const Details = () => {
+  const navigate = useNavigate();
   const [modalShow, setModalShow] = useState(false);
 
   const params = useParams();
@@ -20,10 +21,22 @@ const Details = () => {
 
   return (
     <>
+      <Navbar className="navbar-mobile" expand="lg" variant="light" bg="light">
+        <Container className="navbar-mobile">
+          <Navbar.Brand className="navbar-mobile">
+            <h6 className="name cursor-pointer" onClick={() => navigate("/")}>
+              <i class="bi bi-arrow-left"></i> Stok Pokémon
+            </h6>
+          </Navbar.Brand>
+        </Container>
+      </Navbar>
       <Container className="mt-5">
-        <a href="/" className="name">
+        <h6
+          className="name cursor-pointer navbar-web"
+          onClick={() => navigate("/")}
+        >
           <i class="bi bi-arrow-left"></i> Stok Pokémon
-        </a>
+        </h6>
         <Row>
           <Col md={10}>
             <h2 className="title-text mt-5">{params.name}</h2>
@@ -53,8 +66,8 @@ const Details = () => {
                 <th>Waktu</th>
                 <th>Kegiatan</th>
                 <th>Catatan</th>
-                <th className="left-text">Jmlh</th>
-                <th className="left-text">Stok</th>
+                <th className="right-text">Jmlh</th>
+                <th className="right-text">Stok</th>
               </tr>
             </thead>
             <tbody>
@@ -62,8 +75,8 @@ const Details = () => {
                 <td>2 Apr 2021, 00:00</td>
                 <td className="name">Update stok</td>
                 <td>"stok awal"</td>
-                <td className="left-text">+10 pcs</td>
-                <td className="left-text">10 pcs</td>
+                <td className="right-text">+10 pcs</td>
+                <td className="right-text">10 pcs</td>
               </tr>
             </tbody>
           </Table>
@@ -71,7 +84,11 @@ const Details = () => {
       </Container>
 
       {/* modal */}
-      <FormUpdate show={modalShow} onHide={() => setModalShow(false)} />
+      <FormUpdate
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        name={params.name}
+      />
     </>
   );
 };
