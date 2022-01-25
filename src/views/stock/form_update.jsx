@@ -1,13 +1,21 @@
 import React from "react";
-import { Container, Table, Button, Row, Col, Modal } from "react-bootstrap";
+import {
+  Table,
+  Container,
+  Button,
+  Row,
+  Col,
+  Modal,
+  Form,
+} from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./stock.css";
 import allStore from "../../store/actions";
 
 const FormUpdate = (props) => {
-  const params = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const Pokemon = useSelector(({ pokemon }) => pokemon);
   useEffect(() => {
@@ -23,55 +31,83 @@ const FormUpdate = (props) => {
         centered
       >
         <Modal.Body>
-          <h4>Centered Modal</h4>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros.
-          </p>
-          <Container className="mt-5">
-            <a href="/" className="name">
-              <i class="bi bi-arrow-left"></i> Stok Pokémon
-            </a>
-            <Row>
-              <Col md={10}>
-                <h2 className="title-text mt-5">{params.name}</h2>
-              </Col>
-              <Col md={2}>
-                <Button variant="outline-secondary" className="btn-update">
-                  Update Stok
-                </Button>
-              </Col>
-            </Row>
-
-            <div>
-              <h7 className="mt-5">sisa stok</h7>
-              <h4>10</h4>
-              <h5 className="mt-3">Riwayat Stok</h5>
-              <h7>satuan stok dalam pcs</h7>
-            </div>
+          <Container>
+            <h2 className="title-text center-text mt-2">Update stok</h2>
+            <p className="center-text">
+              Masukkan jumlah stok yang tersedia di rak saat ini.
+            </p>
 
             <div>
               <Table responsive="sm" className="mt-3">
                 <thead>
                   <tr>
-                    <th>Waktu</th>
-                    <th>Kegiatan</th>
-                    <th>Catatan</th>
-                    <th className="left-text">Jmlh</th>
-                    <th className="left-text">Stok</th>
+                    <th>Kemasan</th>
+                    <th className="right-text">Jumlah</th>
+                    <th className="right-text">Stok</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>2 Apr 2021, 00:00</td>
-                    <td className="name">Update stok</td>
-                    <td>"stok awal"</td>
-                    <td className="left-text">+10 pcs</td>
-                    <td className="left-text">10 pcs</td>
+                    <td>
+                      <b>Pcs</b>{" "}
+                    </td>
+                    <t className="right-text" d>
+                      <Row>
+                        <Col md={4}>1 x </Col>
+                        <Col md={4}>
+                          <Form.Control
+                            size="sm"
+                            type="number"
+                            placeholder=""
+                          />
+                        </Col>
+                        <Col md={4}>=</Col>
+                      </Row>
+                    </t>
+                    <td className="right-text">0</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <b>Lusin</b>{" "}
+                    </td>
+                    <td>
+                      <Row>
+                        <Col md={4} className="right-text">
+                          12 x
+                        </Col>
+                        <Col md={4} className="right-text">
+                          <Form.Control
+                            size="sm"
+                            type="number"
+                            placeholder=""
+                          />
+                        </Col>
+                        <Col md={4} className="right-text">
+                          =
+                        </Col>
+                      </Row>
+                    </td>
+                    <td className="right-text">0</td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="2">
+                      <b>Total stok</b> <>(dalam pcs)</>
+                    </td>
+                    <td className="right-text">
+                      <b>0</b>{" "}
+                    </td>
                   </tr>
                 </tbody>
               </Table>
+            </div>
+            <div className="mt-5 right-text">
+              <Button onClick={() => navigate(`/${props.name}/update/confirm`)}>
+                Simpan
+              </Button>
+              <Button className="ms-2" onClick={props.onHide}>
+                Batal
+              </Button>
             </div>
           </Container>
         </Modal.Body>

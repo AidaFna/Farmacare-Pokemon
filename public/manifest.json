@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "FarmaPoké",
+  "name": "Manage Your Pokémon Stock",
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",
@@ -12,12 +12,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "poke192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "poke512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
