@@ -30,7 +30,7 @@ const Details = () => {
           </Navbar.Brand>
         </Container>
       </Navbar>
-      <Container className="mt-5">
+      <Container className="mt-4">
         <h6
           className="name cursor-pointer navbar-web"
           onClick={() => navigate("/")}
@@ -39,7 +39,7 @@ const Details = () => {
         </h6>
         <Row>
           <Col md={10}>
-            <h2 className="title-text mt-5">{params.name}</h2>
+            <h2 className="title-text mt-2">{params.name}</h2>
           </Col>
           <Col md={2}>
             <Button

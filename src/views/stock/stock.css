@@ -19,6 +19,7 @@ font-style: bold;
 }
 .center-text{
   text-align:center;
+  align-items: center;
 }
 .name{
   color: #006A7A;
@@ -37,17 +38,37 @@ font-style: bold;
   text-decoration: #006A7A;
   color: #006A7A;
 }
+.btn-simpan{
+  color: #006A7A;
+}
 
+/* web */
 @media (min-width: 700px) {
   .navbar-mobile {
     display: none;
     background-color: white;
   }
+  .text-detail{
+    display: none;
+  }
 }
 
+/* mobile */
 @media (max-width: 700px) {
   .navbar-web{
     display: none;
+  }
+  .cell-detail{
+    display: none;
+  }
+  .text-detail{
+    color: gray;
+  }
+  .btn-batal{
+    display: none;
+  }
+  .total-opname{
+    color: black;
   }
 }
 
