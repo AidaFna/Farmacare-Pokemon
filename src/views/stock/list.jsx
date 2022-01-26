@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Table, Form, Row, Col } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -7,6 +7,7 @@ import allStore from "../../store/actions";
 import { useNavigate } from "react-router-dom";
 
 const List = () => {
+  const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const Pokemon = useSelector(({ pokemon }) => pokemon);
@@ -28,7 +29,12 @@ const List = () => {
         <Row>
           <Col md={7} sm={12}>
             <Form className="mt-3  mb-2">
-              <Form.Control size="sm" type="text" placeholder="Cari Pokémon" />
+              <Form.Control
+                size="sm"
+                type="text"
+                placeholder="Cari Pokémon"
+                onChange={(e) => setSearch(e.target.value)}
+              />
             </Form>
           </Col>
         </Row>
@@ -42,21 +48,28 @@ const List = () => {
               </tr>
             </thead>
             <tbody>
-              {Pokemon.map((el, idx) => (
+              {Pokemon.filter((Pokemon) => Pokemon.name.includes(search))
+                .length > 0 ? (
+                Pokemon.filter((Pokemon) => Pokemon.name.includes(search)).map(
+                  (el, idx) => (
+                    <tr>
+                      <td
+                        key={idx}
+                        className="name cursor-pointer"
+                        onClick={() => goToDetails(el.name)}
+                      >
+                        {el.name}
+                      </td>
+                      <td className="right-text">10 pcs</td>
+                    </tr>
+                  )
+                )
+              ) : (
                 <tr>
-                  <td
-                    key={idx}
-                    className="name cursor-pointer"
-                    onClick={() => goToDetails(el.name)}
-                  >
-                    {el.name}
-                  </td>
-                  <td className="right-text">10 pcs</td>
+                  <td>data not found.</td>
+                  <td></td>
                 </tr>
-              ))}
-              <tr>
-                <td className="right-text">Table cell</td>
-              </tr>
+              )}
             </tbody>
           </Table>
         </div>

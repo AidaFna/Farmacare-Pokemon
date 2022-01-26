@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Table,
   Container,
@@ -15,6 +15,9 @@ import "./stock.css";
 import allStore from "../../store/actions";
 
 const FormUpdate = (props) => {
+  const [pcs, setPcs] = useState(0);
+  const [lusin, setLusin] = useState(0);
+  const [total] = useState(pcs + lusin);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const Pokemon = useSelector(({ pokemon }) => pokemon);
@@ -38,7 +41,7 @@ const FormUpdate = (props) => {
             </p>
 
             <div>
-              <Table responsive="sm" className="mt-3">
+              <Table responsive="md" className="mt-3">
                 <thead>
                   <tr>
                     <th>Kemasan</th>
@@ -51,51 +54,59 @@ const FormUpdate = (props) => {
                     <td>
                       <b>Pcs</b>{" "}
                     </td>
-                    <t className="right-text" d>
+                    <td className="right-text">
                       <Row>
-                        <Col md={4}>1 x </Col>
-                        <Col md={4}>
+                        <Col md={5} xs={5}></Col>
+                        <Col md={3} xs={3} className="right-text">
+                          1 x
+                        </Col>
+                        <Col md={3} xs={3} className="right-text">
                           <Form.Control
                             size="sm"
                             type="number"
-                            placeholder=""
+                            onChange={(e) => setPcs(e.target.value)}
                           />
                         </Col>
-                        <Col md={4}>=</Col>
-                      </Row>
-                    </t>
-                    <td className="right-text">0</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <b>Lusin</b>{" "}
-                    </td>
-                    <td>
-                      <Row>
-                        <Col md={4} className="right-text">
-                          12 x
-                        </Col>
-                        <Col md={4} className="right-text">
-                          <Form.Control
-                            size="sm"
-                            type="number"
-                            placeholder=""
-                          />
-                        </Col>
-                        <Col md={4} className="right-text">
+                        <Col md={1} xs={1} className="right-text">
                           =
                         </Col>
                       </Row>
                     </td>
-                    <td className="right-text">0</td>
+                    <td className="right-text">{pcs}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <b>Lusin</b>
+                    </td>
+                    <td className="right-text">
+                      <Row>
+                        <Col md={5} xs={5}></Col>
+                        <Col md={3} xs={3} className="right-text">
+                          12 x
+                        </Col>
+                        <Col md={3} xs={3} className="right-text">
+                          <Form.Control
+                            size="sm"
+                            type="number"
+                            onChange={(e) => {
+                              setLusin(e.target.value * 12);
+                            }}
+                          />
+                        </Col>
+                        <Col md={1} xs={1} className="right-text">
+                          =
+                        </Col>
+                      </Row>
+                    </td>
+                    <td className="right-text">{lusin}</td>
                   </tr>
 
                   <tr>
-                    <td colspan="2">
+                    <td colSpan="2">
                       <b>Total stok</b> <>(dalam pcs)</>
                     </td>
                     <td className="right-text">
-                      <b>0</b>{" "}
+                      <b>{total}</b>{" "}
                     </td>
                   </tr>
                 </tbody>
@@ -105,7 +116,14 @@ const FormUpdate = (props) => {
               <Button onClick={() => navigate(`/${props.name}/update/confirm`)}>
                 Simpan
               </Button>
-              <Button className="ms-2" onClick={props.onHide}>
+              <Button
+                className="ms-2"
+                onClick={props.onHide}
+                // onClick={(e) => {
+                //   setPcs(0);
+                //   setLusin(0);
+                // }}
+              >
                 Batal
               </Button>
             </div>
